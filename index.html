@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta name="author" content=" Muhanad ">
+	    <title>Nieghborhood Map: Plan your Trip</title>
+	    <link rel="stylesheet" type="text/css" href="css/style.css">
+		<script src="js/knockout-3.3.0.js"></script>
+		<script src="js/jquery-1.11.2.js"></script>
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?"></script>
+	</head>
+	<body>
+		<div id="search"><input id="searchTextField" placeHolder ="Enter Scene" type="text"></input></div>
+		<div id="map-canvas">
+			Here is where our map will be.
+		</div>
+		<script type="text/javascript">
+			function initialize() {
+        var mapOptions = {
+          center: { lat: 48.851302, lng: 2.345127},
+          zoom: 15
+        };
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+      console.log("Did the map load?!");
+      var input = document.getElementById('searchTextField');
+      autocomplete = new google.maps.places.Autocomplete(input, {types:['geocode']});
+		</script>
+	</body>
+</html>
