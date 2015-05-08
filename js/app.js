@@ -11,23 +11,47 @@ var Scene = function (data) {
 // console.log(scene01.location);
 // console.log(scene01.title);
 var allScenes = [
-	{
-		'location': [48.8554141, 2.3544136],
-		'title': 'Where it all began',
-		'imgSrc': '../img/scene01.jpg',
-		'description': 'A fair description of the scene and why you personally connect with it'
-	},
+	// {
+	// 	'location': [48.8554141, 2.3544136],
+	// 	'title': 'Where it all began',
+	// 	'imgSrc': 'img/scene01.jpg',
+	// 	'description': 'A fair description of the scene and why you personally connect with it'
+	// },
+	// {
+	// 	'location': [48.8554141, 2.3544136],
+	// 	'title': 'Where it all began',
+	// 	'imgSrc': 'img/scene01.jpg',
+	// 	'description': 'A fair description of the scene and why you personally connect with it'
+	// },
+	// {
+	// 	'location': [48.8554141, 2.3544136],
+	// 	'title': 'Where it all began',
+	// 	'imgSrc': 'img/scene01.jpg',
+	// 	'description': 'A fair description of the scene and why you personally connect with it'
+	// },
+	// {
+	// 	'location': [48.8554141, 2.3544136],
+	// 	'title': 'Where it all began',
+	// 	'imgSrc': 'img/scene01.jpg',
+	// 	'description': 'A fair description of the scene and why you personally connect with it'
+	// },
+	// {
+	// 	'location': [48.8554141, 2.3544136],
+	// 	'title': 'Where it all began',
+	// 	'imgSrc': 'img/scene01.jpg',
+	// 	'description': 'A fair description of the scene and why you personally connect with it'
+	// },
 	{
 		'location': [48.85201147, 2.35499296],
 		'title': 'Where it all began2',
-		'imgSrc': '../img/scene01.jpg',
-		'description': 'A fair description of the scene and why you personally connect with it'
+		'imgSrc': 'img/scene01.jpg',
+		'description': '1-A fair description of the scene and why you personally connect with it'
 	},
 	{
 		'location': [48.85148906,2.35797558],
 		'title': 'Where it all began3',
-		'imgSrc': '../img/scene01.jpg',
-		'description': 'A fair description of the scene and why you personally connect with it'
+		'imgSrc': 'img/scene01.jpg',
+		'description': '2-A fair description of the scene and why you personally connect with it'
 	}
 ];
 var ViewModel = function() {
@@ -42,16 +66,7 @@ var ViewModel = function() {
     this.map = new google.maps.Map(document.getElementById('map-canvas'),
             mapOptions);
     var scene02 = new google.maps.LatLng(48.85379665, 2.36169044);
-    var myMarker = new google.maps.Marker({
-			position: scene02,
-			map: self.map,
-			title: 'Hello Marker!'
-		});
-    console.log("Marker Added or not!");
-    console.log("Did the map load?!");
-    //google.maps.event.addDomListener(window, 'load', initialize);
-	
-
+    
 	this.scenesList = ko.observableArray([]);
 
 	allScenes.forEach(function(sceneItem){
@@ -64,12 +79,19 @@ var ViewModel = function() {
 		console.log("I have been Clicked!");
 	}
 	// Create Markers for all scenes inside scenesList
-	this.markersList = [];
+	this.markersList = ko.observableArray([]);
+
+	
+var contentString = 'Hello';
+
+var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
 
 	createMarkers = function() {
 		console.log("function createMarkers started");
 		for(i=0; i<self.scenesList().length; i++) {
-			console.log(self.scenesList()[0]['location'][1]);
+			contentString = '<p>' + self.scenesList()[i]['description'] + '</p>';
 			var mylatLng = new google.maps.LatLng(self.scenesList()[i]['location'][0], self.scenesList()[i]['location'][1]);
     		var marker = new google.maps.Marker({
 				position: mylatLng,
@@ -77,14 +99,38 @@ var ViewModel = function() {
 				title: self.scenesList()[i].title
 			});
 			self.markersList.push(marker);
+
+			
+			// Attach a click event listener to each marker to open the infowindow
+			google.maps.event.addListener(self.markersList()[i], 'click', function(fakecontent) {
+    			return function() {
+    				infowindow.setContent(fakecontent);
+    				infowindow.open(this.map, this);
+    			}
+  			}(contentString));
 		}
 	}
 	createMarkers();
-	console.log(this.markersList);
-	// Show markers on the map
-	for (i=0; i<self.markersList; i++) {
-		this.markersList[i].setMap(map);
-	}
+	console.log(this.markersList());
+
+	
+	// Create infowindows
+	
+
+    
+
+   	// setWindow = function() {
+   	// 	console.log("Setting up info windows");
+   	// 	for(i=0; i<self.markersList().length; i++) {
+   	// 		google.maps.event.addListener(self.markersList()[i], 'click', function() {
+   	// 			infowindow.open(self.map, self.markersList()[i]);
+   	// 		});
+   	// 	}
+   	// }
+   	// setWindow();
+  	
+
+
 }
 
 ko.applyBindings(new ViewModel());

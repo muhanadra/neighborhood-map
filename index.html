@@ -6,25 +6,27 @@
 	    <meta name="author" content=" Muhanad ">
 	    <title>Nieghborhood Map: Plan your Trip</title>
 	    <link rel="stylesheet" type="text/css" href="css/style.css">
+	    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<script src="js/knockout-3.3.0.js"></script>
 		<script src="js/jquery-1.11.2.js"></script>
+		<script src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?"></script>
 
 	</head>
 	<body>
-		<div id="search"><input id="searchTextField" placeHolder ="Enter Scene" type="text"></input></div>
+		<!-- <div id="search"><input id="searchTextField" placeHolder ="Enter Scene" type="text"></input></div>
 		<ul id="navigator" data-bind="foreach: scenesList">
 			<li data-bind="text: title, click: $parent.setMe"></li>
-		</ul>
+		</ul> -->
 		<div id="map-canvas">
 			Here is where our map will be.
 		</div>
-		<div id="scenes-container" class="ScenesList">
-			<ul class="list-inline">
-				<li class="SceneItem"></li>
-				<li class="SceneItem"></li>
-				<li class="SceneItem"></li>
-				<li class="SceneItem"></li>
+		<div id="scenes-container" class="ScenesList" >
+			<ul class="list-inline" data-bind="foreach: scenesList">
+				<li class="SceneItem" data-bind="click: $parent.setMe">
+					<h3 data-bind="text: title"></h3>
+					<img width="40px" height="30px" data-bind="attr:{src: imgSrc}" />
+				</li>
 			</ul>
 		</div>
 		<script src="js/app.js"></script>
