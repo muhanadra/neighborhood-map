@@ -1,0 +1,29 @@
+[
+    {
+        "location": [
+            48.852547,
+            2.34712
+        ],
+        "title": "Where it all began",
+        "imgSrc": "img/scene01.jpg",
+        "description": "A fair description of the scene and why you personally connect with it"
+    },
+    {
+        "location": [
+            48.85201147,
+            2.35499296
+        ],
+        "title": "Where it all began2",
+        "imgSrc": "img/scene01.jpg",
+        "description": "1-A fair description of the scene and why you personally connect with it"
+    },
+    {
+        "location": [
+            48.85148906,
+            2.35797558
+        ],
+        "title": "Where it all began3",
+        "imgSrc": "img/scene01.jpg",
+        "description": "2-A fair description of the scene and why you personally connect with it"
+    }
+]

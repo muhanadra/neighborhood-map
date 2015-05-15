@@ -1,101 +1,59 @@
-// Using JQUERY to send AJAX request to the server to get the data
-// $.getJSON("/url", function(data){
-// 	var allScenes = data;
-// })
-// Start of my app
+// Using JQUERY to send AJAX request to the server to get the data and Start our App
+var allScenes;
+$.getJSON("scenes.json", function(data){
+	allScenes = data;
+	console.log(allScenes);
+	ko.applyBindings(new ViewModel());
+})
+
+
+// Class for all our scenes objects
 var Scene = function (data) {
 	this.location = data.location;
 	this.title = data.title;
 	this.imgSrc = data.imgSrc;
 	this.description = data.description;
 }
-//scene01 = new Scene([48.851302, 2.36169044], "God does not rule with dice!", '../img/scene01.jpg', "Some Description about the scene");
-// console.log(scene01.location);
-// console.log(scene01.title);
-var allScenes = [
-	// {
-	// 	'location': [48.8554141, 2.3544136],
-	// 	'title': 'Where it all began',
-	// 	'imgSrc': 'img/scene01.jpg',
-	// 	'description': 'A fair description of the scene and why you personally connect with it'
-	// },
-	// {
-	// 	'location': [48.8554141, 2.3544136],
-	// 	'title': 'Where it all began',
-	// 	'imgSrc': 'img/scene01.jpg',
-	// 	'description': 'A fair description of the scene and why you personally connect with it'
-	// },
-	// {
-	// 	'location': [48.8554141, 2.3544136],
-	// 	'title': 'Where it all began',
-	// 	'imgSrc': 'img/scene01.jpg',
-	// 	'description': 'A fair description of the scene and why you personally connect with it'
-	// },
-	// {
-	// 	'location': [48.8554141, 2.3544136],
-	// 	'title': 'Where it all began',
-	// 	'imgSrc': 'img/scene01.jpg',
-	// 	'description': 'A fair description of the scene and why you personally connect with it'
-	// },
-	{
-		'location': [48.852547, 2.34712],
-		'title': 'Where it all began',
-		'imgSrc': 'img/scene01.jpg',
-		'description': 'A fair description of the scene and why you personally connect with it'
-	},
-	{
-		'location': [48.85201147, 2.35499296],
-		'title': 'Where it all began2',
-		'imgSrc': 'img/scene01.jpg',
-		'description': '1-A fair description of the scene and why you personally connect with it'
-	},
-	{
-		'location': [48.85148906,2.35797558],
-		'title': 'Where it all began3',
-		'imgSrc': 'img/scene01.jpg',
-		'description': '2-A fair description of the scene and why you personally connect with it'
-	}
-];
-var myJSON = JSON.stringify(allScenes);
-console.log(myJSON);
+
+// Our KnockOut ViewModel
 var ViewModel = function() {
+
 
 	var self = this;
 
-	
+	// Setting the map options
 	var mapOptions = {
           center: { lat: 48.851302, lng: 2.345127},
           zoom: 15
         };
+    // Loading our new map into the canvas.
     this.map = new google.maps.Map(document.getElementById('map-canvas'),
             mapOptions);
     
-    
+    // Putting our scenes objects from JSON file in an observableArray
 	this.scenesList = ko.observableArray([]);
 
 	allScenes.forEach(function(sceneItem){
 		self.scenesList.push( new Scene(sceneItem) );
 	});
 
-	this.currentScene = ko.observable( this.scenesList[0] );
-	console.log(this.scenesList()[0]['location'][0]);
-
+	// Set the content and open the infowindow when the user click on a scene.
 	this.setMe = function() {
 		infowindow.setContent(this.node);
 		infowindow.open(self.map, this);
-		console.log("I have been Clicked!");
 	}
-	// Create Markers for all scenes inside scenesList
+
+	// An observable array for all our markers
 	this.markersList = ko.observableArray([]);
 
-	
-	var contentString = 'Hello';
+	// Creating a new InfoWindow Object, read google maps doc for more nfo
+	var contentString;
 
 	var infowindow = new google.maps.InfoWindow({
       content: contentString
     });
 	
-	// A function to add content to infowindow
+	// A function to create the content and assign an eventlistener to each marker
 	createContent = function(index) {
 		contentString = '<div>'+ '<h2>' + self.scenesList()[index]['title'] + '<h2>' +
 						'<p>' + self.scenesList()[index]['description'] + '</p>'+ '</div>';
@@ -107,9 +65,10 @@ var ViewModel = function() {
     			}
   			}(contentString));
 	}
-	
+
+
+	// Class to create Object markers for all the scenes inside our observable array scenesList
 	createMarkers = function() {
-		console.log("function createMarkers started");
 		for(i=0; i<self.scenesList().length; i++) {
 			
 			var mylatLng = new google.maps.LatLng(self.scenesList()[i]['location'][0], self.scenesList()[i]['location'][1]);
@@ -118,41 +77,24 @@ var ViewModel = function() {
 				map: self.map,
 				title: self.scenesList()[i].title
 			});
+
+			// Adding new properties to our markers
 			marker.node = '<div>'+ '<h2>' + self.scenesList()[i]['title'] + '<h2>' +
 						'<p>' + self.scenesList()[i]['description'] + '</p>'+ '</div>';
 			marker.imgSrc = self.scenesList()[i]['imgSrc'];
+
+			// Pushing our markers to the observable array markersList
 			self.markersList.push(marker);
+
 			// Attach a click event listener to each marker to open the infowindow
 			createContent(i);
 		}
 	}
-	createMarkers();
-	console.log(this.markersList()[0]['node']);
-
-	
-	// Create infowindows
-	
-
-    
-
-   	// setWindow = function() {
-   	// 	console.log("Setting up info windows");
-   	// 	for(i=0; i<self.markersList().length; i++) {
-   	// 		google.maps.event.addListener(self.markersList()[i], 'click', function() {
-   	// 			infowindow.open(self.map, self.markersList()[i]);
-   	// 		});
-   	// 	}
-   	// }
-   	// setWindow();
-  	
-
-
+	createMarkers();	
 }
 
-ko.applyBindings(new ViewModel());
-
-// Using Jquery closet to implement the search/filter function
-$("#search-criteria").on("keyup", function() {
+// Using Jquery to implement the search/filter function
+$("#search").on("keyup", function() {
 	var g = $(this).val().toLowerCase();
 	$(".title").each(function(){
 		var s =$(this).text().toLowerCase();
