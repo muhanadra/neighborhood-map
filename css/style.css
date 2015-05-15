@@ -1,4 +1,4 @@
-html, body, #map-canvas {
+html, body, #wrapper {
         height: 100%;
         margin: 0px;
         padding: 0px
@@ -6,6 +6,18 @@ html, body, #map-canvas {
 
 body {
 	background-color: #eee;
+}
+
+#map-canvas {
+    height: 80%;
+    margin: 0px;
+    padding: 0px
+}
+
+#search {
+    position: absolute;
+    top: 0;
+    margin: 20px 97px;
 }
 
 .ScenesList

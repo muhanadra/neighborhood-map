@@ -14,20 +14,20 @@
 
 	</head>
 	<body>
-		<!-- <div id="search"><input id="searchTextField" placeHolder ="Enter Scene" type="text"></input></div>
-		<ul id="navigator" data-bind="foreach: scenesList">
-			<li data-bind="text: title, click: $parent.setMe"></li>
-		</ul> -->
-		<div id="map-canvas">
-			Here is where our map will be.
-		</div>
-		<div id="scenes-container" class="ScenesList" >
-			<ul class="list-inline" data-bind="foreach: scenesList">
-				<li class="SceneItem" data-bind="click: $parent.setMe">
-					<h3 data-bind="text: title"></h3>
-					<img width="40px" height="30px" data-bind="attr:{src: imgSrc}" />
-				</li>
-			</ul>
+		<div id="wrapper">
+			<div id="map-canvas">
+				Here is where our map will be.
+			</div>
+			<div id="search"><input id="search-criteria" placeHolder ="Enter Scene" type="text"></input></div>
+			<div id="scenes-container" class="ScenesList" >
+				<ul class="list-inline" data-bind="foreach: markersList">
+					<li class="SceneItem" data-bind="click: $parent.setMe">
+						<h3 class="title" data-bind="text: title"></h3>
+						<!-- <h3 data-bind="html: node"></h3> -->
+						<img width="400px" height="300px" data-bind="attr: {src: imgSrc}" />
+					</li>
+				</ul>
+			</div>
 		</div>
 		<script src="js/app.js"></script>
 	</body>
