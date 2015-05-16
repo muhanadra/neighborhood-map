@@ -18,7 +18,6 @@ var Scene = function (data) {
 // Our KnockOut ViewModel
 var ViewModel = function() {
 
-
 	var self = this;
 
 	// Setting the map options
@@ -26,6 +25,7 @@ var ViewModel = function() {
           center: { lat: 48.851302, lng: 2.345127},
           zoom: 15
         };
+
     // Loading our new map into the canvas.
     this.map = new google.maps.Map(document.getElementById('map-canvas'),
             mapOptions);
@@ -52,11 +52,32 @@ var ViewModel = function() {
 	var infowindow = new google.maps.InfoWindow({
       content: contentString
     });
+
+
 	
 	// A function to create the content and assign an eventlistener to each marker
 	createContent = function(index) {
+		// AJAX request to Wikipedia to pull random info about the Movie
+    	var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + self.scenesList()[index]['title'] +
+    			 '&format=json&callback=wikiCallback';
+
+	     $.ajax({
+	        type: "GET",
+	        url: wikiUrl,
+	        async: false,
+	        dataType: "jsonp",
+	        success: function (data, textStatus, jqXHR) {
+	 			console.log(data);
+	 
+	        },
+	        error: function (errorMessage) {
+	        }
+	    });
+
+	     // Creating our content String
 		contentString = '<div>'+ '<h2>' + self.scenesList()[index]['title'] + '<h2>' +
 						'<p>' + self.scenesList()[index]['description'] + '</p>'+ '</div>';
+
 		google.maps.event.addListener(self.markersList()[index], 'click', function(content) {
     		return function() {
     			infowindow.setContent(content);
