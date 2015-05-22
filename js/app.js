@@ -2,14 +2,12 @@
 var allScenes;
 $.getJSON("scenes.json", function(data){
 	allScenes = data;
-	console.log(allScenes);
 	ko.applyBindings(new ViewModel());
 })
 
-
 // Class for all our scenes objects
 var Scene = function (data) {
-	this.location = data.location;
+	this.coordinates = data.coordinates;
 	this.title = data.title;
 	this.imgSrc = data.imgSrc;
 	this.description = data.description;
@@ -71,6 +69,7 @@ var ViewModel = function() {
 	 
 	        },
 	        error: function (errorMessage) {
+	        	console.log("Connection to Wikipedia failed" + errorMessage);
 	        }
 	    });
 
@@ -92,7 +91,7 @@ var ViewModel = function() {
 	createMarkers = function() {
 		for(i=0; i<self.scenesList().length; i++) {
 			
-			var mylatLng = new google.maps.LatLng(self.scenesList()[i]['location'][0], self.scenesList()[i]['location'][1]);
+			var mylatLng = new google.maps.LatLng(self.scenesList()[i]['coordinates'][0], self.scenesList()[i]['coordinates'][1]);
     		var marker = new google.maps.Marker({
 				position: mylatLng,
 				map: self.map,
@@ -132,29 +131,29 @@ $("#search").on("keyup", function() {
 // });
 // Define a class for all scenes in the form of a constructor function Scene();
 // var Scene = function (data) {
-// 	this.location = data.location;
+// 	this.coordinates = data.coordinates;
 // 	this.title = data.title;
 // 	this.imgSrc = data.imgSrc;
 // 	this.description = data.description;
 // }
 //scene01 = new Scene([48.851302, 2.36169044], "God does not rule with dice!", '../img/scene01.jpg', "Some Description about the scene");
-// console.log(scene01.location);
+// console.log(scene01.coordinates);
 // console.log(scene01.title);
 // var scenes = [
 // 	{
-// 		'location': {48.851302, 2.345127},
+// 		'coordinates': {48.851302, 2.345127},
 // 		'title': 'Where it all began',
 // 		'imgSrc': '../img/scene01.jpg',
 // 		'description': 'A fair description of the scene and why you personally connect with it'
 // 	},
 // 	{
-// 		'location': {48.851302, 2.345127},
+// 		'coordinates': {48.851302, 2.345127},
 // 		'title': 'Where it all began2',
 // 		'imgSrc': '../img/scene01.jpg',
 // 		'description': 'A fair description of the scene and why you personally connect with it'
 // 	},
 // 	{
-// 		'location': {48.851302, 2.345127},
+// 		'coordinates': {48.851302, 2.345127},
 // 		'title': 'Where it all began3',
 // 		'imgSrc': '../img/scene01.jpg',
 // 		'description': 'A fair description of the scene and why you personally connect with it'

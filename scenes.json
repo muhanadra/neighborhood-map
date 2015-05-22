@@ -1,29 +1,75 @@
 [
     {
-        "location": [
+        "coordinates": [
             48.852547,
             2.34712
         ],
-        "title": "Where it all began",
+        "title": "God Does Not Play with Dice",
+        "location": "Shakespeare and Company",
         "imgSrc": "img/scene01.jpg",
-        "description": "A fair description of the scene and why you personally connect with it"
+        "description": "Jesse in his final destination in his book tour, Which happens to be Celine best Bookstore in Paris, The Universe must be conspiraying to bring this too together. They just don't know it."
     },
     {
-        "location": [
-            48.85201147,
-            2.35499296
+        "coordinates": [
+            48.85227,
+            2.346986
         ],
-        "title": "Where it all began2",
+        "title": "Did You Show Up in Vienna?",
+        "location": "Rue Saint-Julien le Pauvre 75005 Paris, France",
         "imgSrc": "img/scene01.jpg",
         "description": "1-A fair description of the scene and why you personally connect with it"
     },
     {
-        "location": [
+        "coordinates": [
             48.85148906,
             2.35797558
         ],
-        "title": "Where it all began3",
+        "title": "Say, 'Stop'.",
+        "location": "Shakespeare and Company",
         "imgSrc": "img/scene01.jpg",
-        "description": "2-A fair description of the scene and why you personally connect with it"
+        "description": "Celine give Jesse the finger"
+    },
+    {
+        "coordinates": [
+            48.853296, 
+            2.383387
+        ],
+        "title": "Le Pure Café",
+        "location": "Le Pure Café",
+        "imgSrc": "img/scene01.jpg",
+        "description": "1-A fair description of the scene and why you personally connect with it"
+    },
+    {
+        "coordinates": [
+            48.843460, 
+            2.383052
+        ],
+        "title": "Le Pure Café",
+        "location": "Promenade Plantée",
+        "imgSrc": "img/scene01.jpg",
+        "description": "1-A fair description of the scene and why you personally connect with it"
+    },
+    {
+        "coordinates": [
+            48.851841, 
+            2.374466
+        ],
+        "title": "Dissolve into molecules",
+        "location": "Courtyard of the Golden Star",
+        "Quote": "I just want to see if you're going to Dissolve into molecules.",
+        "imgSrc": "img/scene01.jpg",
+        "description": "1-A fair description of the scene and why you personally connect with it"
+    },
+    {
+        "coordinates": [
+            48.852374, 
+            2.374741
+        ],
+        "title": "Let me sing you a waltz",
+        "location": "Celine's Apartment",
+        "Quote": "Baby you're going to miss that plane.",
+        "imgSrc": "img/scene01.jpg",
+        "description": "1-A fair description of the scene and why you personally connect with it"
     }
+
 ]
