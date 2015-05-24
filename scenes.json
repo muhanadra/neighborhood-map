@@ -6,6 +6,7 @@
         ],
         "title": "God Does Not Play with Dice",
         "location": "Shakespeare and Company",
+        "quote": "I just want to see if you're going to Dissolve into molecules.",
         "imgSrc": "img/scene01.jpg",
         "description": "Jesse in his final destination in his book tour, Which happens to be Celine best Bookstore in Paris, The Universe must be conspiraying to bring this too together. They just don't know it."
     },
@@ -16,6 +17,7 @@
         ],
         "title": "Did You Show Up in Vienna?",
         "location": "Rue Saint-Julien le Pauvre 75005 Paris, France",
+        "quote": "I just want to see if you're going to Dissolve into molecules.",
         "imgSrc": "img/scene01.jpg",
         "description": "1-A fair description of the scene and why you personally connect with it"
     },
@@ -24,50 +26,53 @@
             48.85148906,
             2.35797558
         ],
-        "title": "Say, 'Stop'.",
+        "title": "Say, \"Stop\".",
         "location": "Shakespeare and Company",
+        "quote": "I just want to see if you're going to Dissolve into molecules.",
         "imgSrc": "img/scene01.jpg",
         "description": "Celine give Jesse the finger"
     },
     {
         "coordinates": [
-            48.853296, 
+            48.853296,
             2.383387
         ],
         "title": "Le Pure Café",
         "location": "Le Pure Café",
+        "quote": "I just want to see if you're going to Dissolve into molecules.",
         "imgSrc": "img/scene01.jpg",
         "description": "1-A fair description of the scene and why you personally connect with it"
     },
     {
         "coordinates": [
-            48.843460, 
+            48.843460,
             2.383052
         ],
         "title": "Le Pure Café",
         "location": "Promenade Plantée",
+        "quote": "I just want to see if you're going to Dissolve into molecules.",
         "imgSrc": "img/scene01.jpg",
         "description": "1-A fair description of the scene and why you personally connect with it"
     },
     {
         "coordinates": [
-            48.851841, 
+            48.851841,
             2.374466
         ],
         "title": "Dissolve into molecules",
         "location": "Courtyard of the Golden Star",
-        "Quote": "I just want to see if you're going to Dissolve into molecules.",
+        "quote": "I just want to see if you're going to Dissolve into molecules.",
         "imgSrc": "img/scene01.jpg",
         "description": "1-A fair description of the scene and why you personally connect with it"
     },
     {
         "coordinates": [
-            48.852374, 
+            48.852374,
             2.374741
         ],
         "title": "Let me sing you a waltz",
-        "location": "Celine's Apartment",
-        "Quote": "Baby you're going to miss that plane.",
+        "location": "Shakespeare and Company",
+        "quote": "Baby you're going to miss that plane.",
         "imgSrc": "img/scene01.jpg",
         "description": "1-A fair description of the scene and why you personally connect with it"
     }

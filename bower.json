@@ -1,0 +1,14 @@
+{
+  "name": "Movie Locations",
+  "version": "0.0.0",
+  "homepage": "https://github.com/neo0rabie/neighborhood-map",
+  "authors": [
+    "Muhanad <neo0rabie@gmail.com>"
+  ],
+  "description": "An app to track the differnet filming locations of my favorite films",
+  "main": "app.js",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "~3.3.4"
+  }
+}

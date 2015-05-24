@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
 	    <meta name="author" content=" Muhanad ">
+	    <meta name="discription" content="Filming locations of Before Sunset">
 	    <title>Nieghborhood Map: Plan your Trip</title>
 	    <link rel="stylesheet" type="text/css" href="css/style.css">
 	    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -11,7 +12,6 @@
 		<script src="js/jquery-1.11.2.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?"></script>
-
 	</head>
 	<body>
 		<div id="wrapper">
@@ -19,12 +19,12 @@
 				Here is where our map will be.
 			</div>
 			<div><input id="search" placeHolder =" Enter Scene" type="text"></input></div>
-			<div id="scenes-container" class="ScenesList" >
-				<ul class="list-inline" data-bind="foreach: markersList">
+			<div id="scenes-container" class="ScenesList">
+				<ul id="scrollbox3" class="list-inline scroll" data-bind="foreach: markersList">
 					<li class="SceneItem" data-bind="click: $parent.setMe">
-						<h3 class="title" data-bind="text: title"></h3>
+						<h4 class="title" data-bind="text: title"></h3>
 						<!-- <h3 data-bind="html: node"></h3> -->
-						<img width="400px" height="300px" data-bind="attr: {src: imgSrc}" />
+						<img width="181" height="171" class="thumbnail" data-bind="attr: {src: imgSrc}" />
 					</li>
 				</ul>
 			</div>
