@@ -55,50 +55,60 @@ var ViewModel = function() {
       content: contentString
     });
 
-	// A function to create the content and assign an eventlistener to each marker
-	createContent = function(index) {
+	// A function to create the content
+	createContentString = function(index) {
 		// AJAX request to Wikipedia to pull random info about the filming location
     	var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + self.scenesList()[index]['location'] +
     			 '&format=json&callback=wikiCallback';
-
-	    if(localStorage['wikiLinks']) {
-	    	var wikiLinks = localStorage.getItem['wikilinks'];
-	    	console.log("No connection to wikipedia needed");
-	    	console.log(localStorage.getItem['wikilinks']);
-	    }
-	    else{
-	    	$.ajax({
-		        type: "GET",
-		        url: wikiUrl,
-		        async: false,
-		        dataType: "jsonp",
-		        success: function (response) {
-		        	console.log(response);
-		        	var artitle = response[1][0];
-		        	var arlink = response[3][0];
-		        	console.log(artitle + arlink);
-		        	console.log("Connection made to Wikipedia");
-		        	// var wikiLinks = JSON.parse(data);
-		        	// localStorage.setItem('wikiLinks', wikiLinks);
-
-		 			var wikiDiv = '<div><a target="_blank" href="' + arlink + '">' + artitle + '</a></div>';
-		 			infowindow.setContent(wikiDiv);
-		 			if(artitle && arlink) {
-		 				self.wikiDiv.push( wikiDiv );
-		 			}
-		 			else{
-		 				self.wikiDiv.push( "No Wikipedia Articles found" );
-		 			}
-		 			console.log(self.wikiDiv());
-		        }
-
-	    	});
-	    }
-	    // Creating our content String
-		contentString = '<div class="info">'+ '<h4>' + self.scenesList()[index]['title'] + '</h4>' +
+	    var wikiRequestError = setTimeout(function(){
+	    	console.log("Connectoin to wikipedia failed");
+	    	contentString = '<div class="info">'+ '<h4>' + self.scenesList()[index]['title'] + '</h4>' +
 						'<p>' + self.scenesList()[index]['description'] + '</p>'+ '</div>';
+			return	contentString;
+	    }, 3000);
 
+    	// if (localStorage['wikiLinks']) {
+	    // 	var wikiLinks = localStorage.getItem['wikilinks'];
+	    // 	console.log("No connection to wikipedia needed");
+	    // 	console.log(localStorage.getItem['wikilinks']);
+    	// }
+    	// else {
+	    	$.ajax({
+    		    type: "GET",
+    		   	url: wikiUrl,
+    		    async: true,
+    		    dataType: "jsonp",
+    		    success: function (response) {
+    		        console.log(response);
+    		        var arTitle = response[1][0];
+    		       	var arLink = response[3][0];
+    		        console.log(arTitle + arLink);
+    		        console.log("Connection made to Wikipedia");
+    		        // var wikiLinks = JSON.parse(data);
+    		        // localStorage.setItem('wikiLinks', wikiLinks);
+    		        var wikiDiv = '<div class="Wikipedia"><a target="_blank" href="' + arLink + '">' + arTitle + '</a></div>';
 
+    		 		if(arTitle && arLink) {
+    		 			self.wikiDiv().push( wikiDiv );
+    		 			self.markersList()[index]['node'] = self.markersList()[index]['node'] + wikiDiv;
+    		 		}
+    		 		else {
+    		 			self.wikiDiv().push( '<div class="Wikipedia">No Wikipedia Articles found</div>' );
+    		 			self.markersList()[index]['node'] = self.markersList()[index]['node'] + '<div class="Wikipedia">No Wikipedia Articles found</div>';
+    		 		}
+    		 		localStorage.setItem('wikiDivs', self.wikiDiv());
+    		 		console.log(self.wikiDiv());
+    		 		clearTimeout(wikiRequestError);
+    		    }
+
+    	    });
+    	// else }
+    	contentString = '<div class="info">'+ '<h4>' + self.scenesList()[index]['title'] + '</h4>' +
+						'<p>' + self.scenesList()[index]['description'] + '</p>'+ '</div>';
+    	return(contentString);
+	    // Creating our content String
+		// contentString = '<div class="info">'+ '<h4>' + self.scenesList()[index]['title'] + '</h4>' +
+		// 				'<p>' + self.scenesList()[index]['description'] + '</p>'+ '</div>';
 	}
 
 	// Class to create Object markers for all the scenes inside our observable array scenesList
@@ -111,28 +121,28 @@ var ViewModel = function() {
 				map: self.map,
 				title: self.scenesList()[i].title
 			});
+
+			// Pushing our markers to the observable array markersList
     		self.markersList.push(marker);
-    		createContent(i);
+
 			// Adding new properties to our markers
 			marker.ind = i;
-			marker.node = contentString;
+			marker.node = createContentString(i);
 			marker.wiki = self.wikiDiv()[i];
 			marker.imgSrc = self.scenesList()[i]['imgSrc'];
 
-			// Pushing our markers to the observable array markersList
-
-
 			// Attach a click event listener to each marker to open the infowindow
-			google.maps.event.addListener(self.markersList()[i], 'click', function(content) {
+			google.maps.event.addListener(self.markersList()[i], 'click', function() {
     		return function() {
-    			infowindow.setContent(content + self.wikiDiv()[i]);
+    			infowindow.setContent(this.node);
     			this.map.setCenter(this.getPosition());
     			infowindow.open(this.map, this);
     			}
-  			}(contentString));
+  			}(this.node));
 		}
 	}
 	createMarkers();
+
 }
 
 // Using Jquery to implement the search/filter function
