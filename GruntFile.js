@@ -14,21 +14,30 @@ module.exports = function(grunt){
         src: ['js/app.js', 'README.md'],
         options: {
             destination: 'doc',
-            configure: 'conf.json'
           }
       }
+    },
+    cssmin: {
+      minify: {
+        options: {
+          banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+        },
+        expand: true,
+        src: ['css/style.css', '!*.min.css'],
+        ext: '.min.css'
+      },
     },
     watch: {
       scripts: {
         files: ['js/app.js','css/style.css'],
-        tasks: ['jshint'],
+        tasks: ['jshint','uglify','cssmin'],
         options: {
           livereload: true,
           spawn: true
         },
       },
     },
-     uglify: {
+    uglify: {
       options: {
         compress: {
           drop_console: true
@@ -46,9 +55,10 @@ module.exports = function(grunt){
     }
   });
 
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-jsdoc');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.registerTask('default', ['watch', 'jsdoc', 'uglify' , 'jshint' ]);
+  grunt.registerTask('default', ['cssmin', 'jsdoc', 'uglify' , 'jshint' ]);
 };

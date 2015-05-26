@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: app.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: app.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
 * @author Muhanadrabie@gmail.com
 * @description This application is based on google maps js api,
 * It loads and center a map in Paris while using markers to show us the lovely roads that Jesse and Celine walked in during the film.
@@ -75,7 +103,7 @@ var ViewModel = function() {
 	*/
 	var createContentString = function(index) {
 		// AJAX request to Wikipedia to pull random info about the filming location
-		var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + self.scenesList()[index]['location'] + '&format=json&callback=wikiCallback';
+		var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&amp;search=' + self.scenesList()[index]['location'] + '&amp;format=json&amp;callback=wikiCallback';
 
 		/**
 		*setTimeout function to handle the error of JSONP query
@@ -83,13 +111,13 @@ var ViewModel = function() {
 		*/
 		var wikiRequestError = setTimeout(function(){
 			console.log("Connectoin to wikipedia failed");
-			contentString = '<div class="info">'+ '<h4>' + self.scenesList()[index]['title'] + '</h4>' +
-						'<p>' + self.scenesList()[index]['description'] + '</p>'+ '</div>';
+			contentString = '&lt;div class="info">'+ '&lt;h4>' + self.scenesList()[index]['title'] + '&lt;/h4>' +
+						'&lt;p>' + self.scenesList()[index]['description'] + '&lt;/p>'+ '&lt;/div>';
 			return	contentString;
 		}, 3000);
 
-		contentString = '<div class="info">'+ '<h4>' + self.scenesList()[index]['title'] + '</h4>' +
-			'<p>' + self.scenesList()[index]['description'] + '</p>'+ '</div>';
+		contentString = '&lt;div class="info">'+ '&lt;h4>' + self.scenesList()[index]['title'] + '&lt;/h4>' +
+			'&lt;p>' + self.scenesList()[index]['description'] + '&lt;/p>'+ '&lt;/div>';
 
 		/**
 		* Make an ajax request using jquery to wikipedia Api and caching the results for future us.
@@ -117,15 +145,15 @@ var ViewModel = function() {
 					console.log(arTitle + arLink);
 					console.log("Connection made to Wikipedia");
 
-					var wikiDiv = '<div class="Wikipedia"><a target="_blank" href="' + arLink + '">' + arTitle + '</a></div>';
+					var wikiDiv = '&lt;div class="Wikipedia">&lt;a target="_blank" href="' + arLink + '">' + arTitle + '&lt;/a>&lt;/div>';
 
-					if (arTitle && arLink) {
+					if (arTitle &amp;&amp; arLink) {
 						self.markersList()[index]['node'] = self.markersList()[index]['node'] + wikiDiv;
 						self.markersList()[index]['wiki'] = wikiDiv;
 					}
 					else {
-						self.markersList()[index]['wiki'] = '<div class="Wikipedia">No Wikipedia Articles found</div>';
-						self.markersList()[index]['node'] = self.markersList()[index]['node'] + '<div class="Wikipedia">No Wikipedia Articles found</div>';
+						self.markersList()[index]['wiki'] = '&lt;div class="Wikipedia">No Wikipedia Articles found&lt;/div>';
+						self.markersList()[index]['node'] = self.markersList()[index]['node'] + '&lt;div class="Wikipedia">No Wikipedia Articles found&lt;/div>';
 					}
 
 					clearTimeout(wikiRequestError);
@@ -133,7 +161,7 @@ var ViewModel = function() {
 					var cachedContent = [];
 					if (index === (numOfScenes-1)) {
 						var storeContent = function() {
-							for(var j=0; j<numOfScenes; j++) {
+							for(var j=0; j&lt;numOfScenes; j++) {
 								cachedContent.push(self.markersList()[j]['wiki']);
 							}
 							var stingCachedContent = JSON.stringify(cachedContent);
@@ -150,7 +178,7 @@ var ViewModel = function() {
 
 	// Class to create Object markers for all the scenes inside our observable array scenesList
 	var createMarkers = function() {
-		for(var i=0; i<self.scenesList().length; i++) {
+		for(var i=0; i&lt;self.scenesList().length; i++) {
 			var mylatLng = new google.maps.LatLng(self.scenesList()[i]['coordinates'][0], self.scenesList()[i]['coordinates'][1]);
 			var marker = new google.maps.Marker({
 				position: mylatLng,
@@ -185,4 +213,26 @@ $("#search").on("keyup", function() {
 		var s =$(this).text().toLowerCase();
 		$(this).closest('.SceneItem')[ s.indexOf(g) !== -1 ? 'show' : 'hide' ]();
 	});
-});
+});</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Scene.html">Scene</a></li></ul><h3>Global</h3><ul><li><a href="global.html#CacheContent">CacheContent</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0</a> on Tue May 26 2015 02:27:12 GMT-0700 (Pacific Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
