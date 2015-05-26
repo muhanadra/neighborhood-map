@@ -6,7 +6,11 @@ This application is based on google maps js api, It loads and center a map in Pa
 
 ###How to run the application
 
+<<<<<<< HEAD
 To Start this application click [here](http://neo0rabie.github.io/neighborhood-map/).
+=======
+To Start this application click [this link!](http://neo0rabie.github.io/neighborhood-map/)
+>>>>>>> gh-pages branch created
 
 #Discalimer
 Most of the data in the app is not correct but I will make sure to fix this in the next few days.
@@ -17,5 +21,12 @@ If you want to see also filming locations of the other parts of this trilogy, Be
 
 ###Credits
 - All the information about the filming location I got from this website. Thank You!
+<<<<<<< HEAD
 - The lovely people @ udacity.com for their help and support.
 - Richard Linktahr, Ethan Hawke and Julia Delpy for giving us this heart warming triology. Will always be my favorite.
+=======
+- he lovely people @ udacity.com for their help and support.
+- Richard Linktahr, Ethan Hawke and Julia Delpy for giving us this heart warming triology. Will always be my favorite.
+
+More Details can be found in the documentation in the doc folder.
+>>>>>>> gh-pages branch created
