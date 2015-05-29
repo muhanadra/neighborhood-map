@@ -60,5 +60,5 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-jsdoc');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.registerTask('default', ['cssmin', 'jsdoc', 'uglify' , 'jshint' ]);
+  grunt.registerTask('default', ['cssmin', 'jsdoc', 'uglify' ]);
 };

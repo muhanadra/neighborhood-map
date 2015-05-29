@@ -5,30 +5,39 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
 	    <meta name="author" content=" Muhanad ">
 	    <meta name="discription" content="Filming locations of Before Sunset">
-	    <title>Nieghborhood Map: Plan your Trip</title>
-	    <link rel="stylesheet" type="text/css" href="css/style.min.css">
-	    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	    <title>Before Sunset: Filming locations</title>
+	    <link rel="stylesheet" href="css/bootstrap.min.css">
+	    <link rel="stylesheet" href="css/style.min.css">
+	    <link rel="stylesheet" href="css/offline-language-en.css">
+	    <link rel="stylesheet" href="css/offline-theme-default.css">
 		<script src="js/knockout-3.3.0.js"></script>
 		<script src="js/jquery-1.11.2.js"></script>
 		<script src="js/bootstrap.min.js"></script>
+		<script src="js/offline.min.js"></script>
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?"></script>
 	</head>
 	<body>
-		<div id="wrapper">
-			<div id="map-canvas">
-				Here is where our map will be.
+		<div class="container-fluid  wrapper">
+			<div class="header row">
+				<div class="logo col-md-8"><h3>Before Sunset: Filming Locations</h3></div>
+
 			</div>
-			<div><input id="search" placeHolder =" Enter Scene" type="text"></input></div>
-			<div id="scenes-container" class="ScenesList">
-				<ul id="scrollbox3" class="list-inline scroll" data-bind="foreach: markersList">
-					<li class="SceneItem" data-bind="click: $parent.setMe">
-						<h4 class="title" data-bind="text: title"></h3>
-						<!-- <h3 data-bind="html: node"></h3> -->
-						<img width="181" height="171" class="thumbnail" data-bind="attr: {src: imgSrc}" />
-					</li>
-				</ul>
+			<div class="row content-container">
+				<div id="map-canvas" class="map col-md-9 col-lg-9"></div>
+				<div class="sidebar col-md-3 col-lg-3">
+					<div class="search-container"><input class="search" placeHolder =" Enter Scene" type="text"><span class="glyphicon glyphicon-search"></span></div>
+					<div class="list-wrapper">
+						<ul class="list-inline scenes-container" data-bind="foreach: markersList">
+							<li class="scene-Item" data-bind="click: $parent.setMe">
+								<h5 class="title" data-bind="text: title"></h3>
+								<img width="200" height="171" class="img-responsive" data-bind="attr: {src: imgSrc}" />
+							</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
+		<script src="js/styler.js"></script>
 		<script src="js/app.min.js"></script>
 	</body>
 </html>

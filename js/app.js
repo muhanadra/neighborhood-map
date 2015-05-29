@@ -41,7 +41,7 @@ var ViewModel = function() {
             mapOptions);
 
     // Putting our scenes objects from JSON file in an observableArray
-	this.scenesList = ko.observableArray([]);
+	this.scenesList = ko.observableArray();
 
 	allScenes.forEach(function(sceneItem){
 		self.scenesList.push( new Scene(sceneItem) );
@@ -56,7 +56,7 @@ var ViewModel = function() {
 
 
 	// An observable array for all our markers
-	this.markersList = ko.observableArray([]);
+	this.markersList = ko.observableArray();
 
 
 	var contentString;
@@ -65,7 +65,8 @@ var ViewModel = function() {
 	* @see {@link https://developers.google.com/maps/documentation/javascript/infowindows| Google Map Api: InfoWindow}
 	*/
 	var infowindow = new google.maps.InfoWindow({
-      content: contentString
+      content: contentString,
+      maxWidth: 220
     });
 
 	/**
@@ -179,10 +180,10 @@ var ViewModel = function() {
 	createMarkers();
 };
 // Using Jquery to implement the search/filter function
-$("#search").on("keyup", function() {
+$(".search").on("keyup", function() {
 	var g = $(this).val().toLowerCase();
 	$(".title").each(function(){
 		var s =$(this).text().toLowerCase();
-		$(this).closest('.SceneItem')[ s.indexOf(g) !== -1 ? 'show' : 'hide' ]();
+		$(this).closest('.scene-Item')[ s.indexOf(g) !== -1 ? 'show' : 'hide' ]();
 	});
 });
