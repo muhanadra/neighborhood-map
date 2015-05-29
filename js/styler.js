@@ -11,6 +11,7 @@ var mapH; // the height of the map
 //.flex-direction changes using media queries. So we are using this css property to detect media queries.
 function checkSize(){
     if ($(".scenes-container").css("flex-direction") == "row" ) {
+
 		mapH = window.innerHeight - ($('.header').height() + 185);
 		$('.map').css("height", mapH + "px");
 		$('.scenes-container').height(175);
@@ -18,7 +19,14 @@ function checkSize(){
     if ($(".scenes-container").css("flex-direction") == "column" ) {
 		mapH = window.innerHeight - $('.header').height();
 		$('.map').height(mapH);
-		$('.scenes-container').height(mapH);
+        $('.scenes-container').height(mapH);
+        // Checking for Landscape view
+        if ($(".sidebar").css("position") == "absolute" ) {
+            console.log("landscape");
+
+            $('.map').width(window.innerWidth-$('.scenes-container').width);
+            $('.scenes-container').height(window.innerHeight);
+        }
 		console.log("Map is set to fit column scenes");
     }
 }

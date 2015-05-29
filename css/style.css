@@ -23,6 +23,39 @@
     }
 }
 
+/* Landscape */
+@media only screen and (orientation: landscape) {
+    .scenes-container {
+        display: block;
+        flex-direction: column;
+        padding: 0;
+    }
+    .sidebar {
+        position: absolute;
+        /* left: 0; */
+        right: 0;
+        top: 0;
+        padding: 0;
+        height: 100%;
+
+    }
+    .search {
+        position: fixed;
+        left: 0;
+        bottom: 5px;
+    }
+    .list-inline {
+        padding: 0;
+    }
+    .list-inline li {
+        display: table;
+    }
+    .title {
+        font-size: 12px;
+    }
+    .list
+}
+
 html, body {
     height: 100%;
     margin: 0;
@@ -71,7 +104,7 @@ html, body {
 }
 
 .map {
-    min-height: 300px;
+    min-height: 50px;
     margin: 0;
     padding: 0;
 }
