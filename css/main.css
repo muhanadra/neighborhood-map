@@ -1,8 +1,12 @@
 html, body {
   height: 100%;
-  overflow: hidden;
   font-size:  62.5%;
 }
+
+body {
+    overflow: hidden;
+}
+
 .map {
 	margin-top: 6em;
 }
@@ -21,9 +25,12 @@ h1 {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 0 2em;
+    padding: 0;
 }
-
+.navbar .navbar-toggle.toggle-sidebar, [data-toggle="sidebar"] {
+    display: inline-flex;
+    cursor: pointer;
+}
 .icon-list {
     font-size: 1.5em;
     color: #FFF;
@@ -78,4 +85,18 @@ input {
 	body {
 		font-size:  45%;
 	}
+}
+@media only screen and (max-width : 266px) {
+    .header h1 {
+        font-size:  14px;
+    }
+    .col-xs-12 {
+        padding: 0;
+    }
+    h5 {
+        font-size: 11px
+    }
+    .menu {
+        width: 30em;
+    }
 }
