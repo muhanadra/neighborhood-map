@@ -29,7 +29,7 @@ module.exports = function(grunt){
     },
     watch: {
       scripts: {
-        files: ['js/app.js','css/style.css'],
+        files: ['js/app.js','css/main.css'],
         tasks: ['jshint','uglify','cssmin'],
         options: {
           livereload: true,

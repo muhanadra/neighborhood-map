@@ -52,12 +52,11 @@ var ViewModel = function() {
 		infowindow.setContent(this.node);
 		this.map.setCenter(this.getPosition());
 		infowindow.open(self.map, this);
+		$('#sidebar').toggleClass('sidebar-open');
 	};
-
 
 	// An observable array for all our markers
 	this.markersList = ko.observableArray();
-
 
 	var contentString;
 	/**
