@@ -23,7 +23,7 @@ module.exports = function(grunt){
           banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
         },
         expand: true,
-        src: ['css/style.css', '!*.min.css'],
+        src: ['css/main.css', '!*.min.css'],
         ext: '.min.css'
       },
     },

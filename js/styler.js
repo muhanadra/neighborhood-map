@@ -8,7 +8,6 @@ $(document).ready(function() {
 });
 
 var mapH; // the height of the map
-//.flex-direction changes using media queries. So we are using this css property to detect media queries.
 function checkSize(){
     mapH = window.innerHeight - ($('.header').height());
     $('.map').height(mapH);
@@ -16,8 +15,8 @@ function checkSize(){
     $('.map').css('margin-top', headerH);
     $('.menu').css('top', headerH);
 
-    var searchH = $('.scenes-container').height();
-	$('.scenes-container').height(mapH - searchH - 5);
+    var searchH = $('.search-container').height();
+	$('.scenes-container').height(mapH - searchH);
 }
 
 // Show our menu and hide it.
